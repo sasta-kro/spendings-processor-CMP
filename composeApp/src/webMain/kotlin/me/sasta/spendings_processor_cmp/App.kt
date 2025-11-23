@@ -30,7 +30,6 @@ import me.sasta.spendings_processor_cmp.rawTextProcessors.processMonthBlock
 import org.jetbrains.compose.resources.painterResource
 
 import spendings_processor_cmp.composeapp.generated.resources.Res
-import spendings_processor_cmp.composeapp.generated.resources.compose_multiplatform
 
 
 
@@ -50,14 +49,20 @@ fun PlaceholderByGemini() {
         var resultOutput by remember { mutableStateOf("Result will appear here...") }
         var isError by remember { mutableStateOf(false) }
 
+
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 24.dp, start = 40.dp, end = 40.dp, bottom = 24.dp),
+                .padding(top = 24.dp, start = 20.dp, end = 20.dp, bottom = 24.dp)
+                .verticalScroll(rememberScrollState()), // Allows scrolling if output is long
+
 
             horizontalAlignment = Alignment.CenterHorizontally
+
         ) {
-            Text("Spendings Processor (Dev Mode)", style = MaterialTheme.typography.headlineMedium)
+            Text("Spending Records Processor by SASTA", style = MaterialTheme.typography.headlineMedium)
+
 
             Spacer(Modifier.height(16.dp))
 
@@ -68,9 +73,20 @@ fun PlaceholderByGemini() {
                 label = { Text("Paste Raw Month Block Here") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(400.dp),
+                    .height(250.dp),
 
-                placeholder = { Text("{{{...}}} \n1.1.2025\nFood - 100") }
+                placeholder = {
+                    Text(
+                        "Format/Syntax Example:\n" +
+                                "1.1.2025\n" +
+                                "Food - 100\n" +
+                                "Taxi - 35\n" +
+                                "{{{ this is a comment }}}\n" +
+                                "Rent - 10000\n\n" +
+                                "2.1.2025\n" +
+                                "lunch - 60"
+                    )
+                }
             )
 
             Spacer(Modifier.height(16.dp))
@@ -115,7 +131,6 @@ fun PlaceholderByGemini() {
 //                        .background(Color.White)
                         .fillMaxWidth()
                         .weight(1f) // Takes up remaining space
-                        .verticalScroll(rememberScrollState()) // Allows scrolling if output is long
                 )
             }
         }
@@ -145,7 +160,7 @@ fun DefaultGeneratedView() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
+//                    Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Compose: $greeting")
                 }
             }
