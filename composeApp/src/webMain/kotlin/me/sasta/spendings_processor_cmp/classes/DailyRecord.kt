@@ -38,7 +38,7 @@ data class DailyRecord(
 
         // Appends date: formats the LocalDate from "2025-2-14" to "14.2.2025"
         // NOTE - WEB FIX: `day` instead of `dayOfMonth`, `month.number` instead of `monthValue`, also `monthNumber` is deprecated
-        result += "${date.dayOfMonth}.${date.month.number}.${date.year}" + paddingSpaces
+        result += "${date.day}.${date.month.number}.${date.year}" + paddingSpaces
 
         // Appends the daily total
         result += "(${checkIfUselessDecimal(dailyTotal)})" + paddingSpaces
