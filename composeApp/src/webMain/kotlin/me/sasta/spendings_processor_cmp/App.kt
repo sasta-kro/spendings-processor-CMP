@@ -51,7 +51,10 @@ fun PlaceholderByGemini() {
         var isError by remember { mutableStateOf(false) }
 
         Column(
-            modifier = Modifier.fillMaxSize().padding(24.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 24.dp, start = 40.dp, end = 40.dp, bottom = 24.dp),
+
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text("Spendings Processor (Dev Mode)", style = MaterialTheme.typography.headlineMedium)
@@ -63,7 +66,10 @@ fun PlaceholderByGemini() {
                 value = rawInput,
                 onValueChange = { rawInput = it },
                 label = { Text("Paste Raw Month Block Here") },
-                modifier = Modifier.fillMaxWidth().height(200.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp),
+
                 placeholder = { Text("{{{...}}} \n1.1.2025\nFood - 100") }
             )
 
@@ -78,7 +84,7 @@ fun PlaceholderByGemini() {
                         resultOutput = record.toString()
                         isError = false
                     } catch (e: Exception) {
-                        resultOutput = "ERROR: ${e.message}"
+                        resultOutput = "ERROR:\n${e.message}"
                         isError = true
                     }
                 }
@@ -93,7 +99,11 @@ fun PlaceholderByGemini() {
             Spacer(Modifier.height(16.dp))
 
             // 3. OUTPUT DISPLAY
-            Text("Output:", style = MaterialTheme.typography.titleLarge, modifier = Modifier.align(Alignment.Start))
+            Text(
+                "Output:",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.align(Alignment.Start)
+            )
 
             // SelectionContainer allows you to copy the result text
             SelectionContainer {
@@ -102,6 +112,7 @@ fun PlaceholderByGemini() {
                     color = if (isError) Color.Red else Color.Black,
                     fontFamily = FontFamily.Monospace, // Monospace looks better for your formatted tables
                     modifier = Modifier
+//                        .background(Color.White)
                         .fillMaxWidth()
                         .weight(1f) // Takes up remaining space
                         .verticalScroll(rememberScrollState()) // Allows scrolling if output is long
