@@ -5,7 +5,8 @@ junit = "4.13.2"
 kotlin = "2.2.20"
 
 # added by me
-kotlinxDatetime = "0.6.0"
+# I had to change to "0.7.1" instead of "0.6.0" for the YearMonth to work
+kotlinxDatetime = "0.7.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
