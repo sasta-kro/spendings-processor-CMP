@@ -18,3 +18,6 @@ fun main() {
 (prob because it is thinking that is an empty line and the next day has started)
  */
 // TODO: sample disappears when typing, so i should have a permanently displaying sample
+
+// TODO: duplicate day check
+// TODO: daily total and monthly cumulative display decimals need limits (2 digits)
