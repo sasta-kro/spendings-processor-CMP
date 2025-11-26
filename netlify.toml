@@ -1,5 +1,5 @@
 [build]
-command = "./gradlew wasmJsBrowserDistribution"
+command = "./gradlew wasmJsBrowserDistribution --stacktrace --info"
 publish = "composeApp/build/dist/wasmJs/productionExecutable"
 
 [build.environment]
