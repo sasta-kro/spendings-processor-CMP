@@ -3,7 +3,4 @@ command = "./gradlew wasmJsBrowserDistribution --stacktrace --info"
 publish = "composeApp/build/dist/wasmJs/productionExecutable"
 
 [build.environment]
-# This tells Netlify's build image to install and use Java 21
 JAVA_VERSION = "21"
-# This sets the JAVA_HOME environment variable, which Gradle respects
-JAVA_HOME = "/opt/buildhome/.jdk/jdk-21"
