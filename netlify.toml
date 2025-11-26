@@ -3,4 +3,4 @@ command = "./gradlew wasmJsBrowserDistribution --stacktrace --info"
 publish = "composeApp/build/dist/wasmJs/productionExecutable"
 
 [build.environment]
-JAVA_VERSION = "21"
+JAVA_VERSION = "17"
