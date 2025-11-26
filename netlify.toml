@@ -1,6 +1,17 @@
 [build]
-command = "./gradlew wasmJsBrowserDistribution --stacktrace --info"
+command = """
+  # Install Java 21
+  curl -s "https://get.sdkman.io" | bash
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk install java 21.0.1-tem
+  sdk use java 21.0.1-tem
+
+  # Verify Java and gradle version
+  java -version
+  ./gradlew --version
+
+  # Run Gradle build
+  ./gradlew wasmJsBrowserDistribution --stacktrace --info
+"""
 publish = "composeApp/build/dist/wasmJs/productionExecutable"
 
-[build.environment]
-JAVA_VERSION = "17"
