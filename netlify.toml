@@ -11,7 +11,7 @@ command = """
   ./gradlew --version
 
   # Run Gradle build
-  ./gradlew wasmJsBrowserDistribution --stacktrace --info
+  ./gradlew wasmJsBrowserDistribution
 """
 publish = "composeApp/build/dist/wasmJs/productionExecutable"
 
