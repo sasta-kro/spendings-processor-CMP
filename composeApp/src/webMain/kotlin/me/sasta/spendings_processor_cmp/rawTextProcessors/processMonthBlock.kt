@@ -13,12 +13,13 @@ import me.sasta.spendings_processor_cmp.classes.UtilFuncs.validateYearMonthValue
 fun processMonthBlock(rawMonthlyRecord: String): MonthlyRecord {
     val removedCommentsMonthlyRecord = rawMonthlyRecord.replace(
         /*  NOTE, had to fix regex. `.DOT_MATCHES_ALL` is not supported
-         // OLD: Regex("""\{\{\{.*?\}\}\}\n?""", RegexOption.DOT_MATCHES_ALL),
-        Regex("""\{\{\{.*?\}\}\}\n?""", RegexOption.DOT_MATCHES_ALL), ""
-        // by default, `.` (dot) in regex does not match newline characters (\n, \r) so we have to use "Dot matches all" flag
+        OLD: `Regex("""\{\{\{.*?\}\}\}\n?""", RegexOption.DOT_MATCHES_ALL), replacement=""`
+        by default, `.` (dot) in regex does not match newline characters (\n, \r) so we have to use "Dot matches all" flag.
+        Fix: replacing `.` with `[\s\S]` (Matches anything including newlines)
+
          */
-        // NEW: (Matches anything including newlines)
-        Regex(pattern = """\{\{\{[\s\S]*?\}\}\}\n?"""),
+        // NEW FIX: Added [ \t]* to consume spaces/tabs before the newline
+        Regex(pattern = """\{\{\{[\s\S]*?\}\}\}[ \t]*\n?"""),
         replacement = ""
     )
 
