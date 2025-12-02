@@ -70,62 +70,6 @@ object UtilFuncs {
     }
 
 
-    /**
-     * Process and find inconsistencies in months and years values in a month-block and return a YearMonth value
-     * to later use it in the creation of MonthlyRecord
-     */
-    fun validateYearMonthValuesInDailyRecords(dailyRecords: List<DailyRecord>) : YearMonth {
-
-        // Check if content is empty first
-        if (dailyRecords.isEmpty()) throw IndexOutOfBoundsException(
-            "The Monthly Record is empty or not formatted right. YearMonth value cannot be found."
-        )
-
-        // Set an initial value as the first value in the list as a placeholder
-        // NOTE - WEB FIX: `.month.number` instead of `.monthValue`
-        var currentMonthValue = dailyRecords[0].date.month.number
-        var monthValueOfLastDailyRecord = currentMonthValue
-
-        var currentYearValue = dailyRecords[0].date.year
-        var yearValueOfLastDailyRecord = currentYearValue
-
-
-        // Going through each day-block in the list and comparing it to the last day-block's monthValue & yearValue
-        for (dailyRecord in dailyRecords) {
-
-            // NOTE - WEB FIX: `.month.number` instead of `.monthValue`
-            currentMonthValue = dailyRecord.date.month.number
-            currentYearValue = dailyRecord.date.year
-
-            // Error if month-date is inconsistent
-            if (currentMonthValue != monthValueOfLastDailyRecord) {
-
-                throw IllegalArgumentException("Inconsistent month-date in date format: \n" +
-                        "The other dailyRecords in the month have monthValue '$monthValueOfLastDailyRecord', " +
-                        "but this specific day block has a monthValue of '$currentMonthValue' "+
-                        "\n\" $dailyRecord \"")
-            }
-
-            // Error message if year-date is inconsistent
-            if (currentYearValue != yearValueOfLastDailyRecord) {       // not else-if on purpose
-
-                throw IllegalArgumentException("Inconsistent year-date in date format: \n" +
-                        "The other dailyRecords in the month have yearValue '$yearValueOfLastDailyRecord', " +
-                        "but this specific day block has a yearValue of '$currentYearValue' "+
-                        "\n\" $dailyRecord \"")
-            }
-
-            // set the current monthValue as this variable to compare it to the next day-block
-            monthValueOfLastDailyRecord = currentMonthValue
-            yearValueOfLastDailyRecord = currentYearValue
-        }
-
-        // NOTE, `YearMonth` construction is different now without `.of` construction
-        return YearMonth(currentYearValue, currentMonthValue)
-    }
-
-
-
 
 }
 
