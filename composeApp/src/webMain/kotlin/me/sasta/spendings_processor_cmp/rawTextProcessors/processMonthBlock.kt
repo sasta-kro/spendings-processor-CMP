@@ -4,7 +4,6 @@ import kotlinx.datetime.YearMonth
 import kotlinx.datetime.number
 import me.sasta.spendings_processor_cmp.classes.DailyRecord
 import me.sasta.spendings_processor_cmp.classes.MonthlyRecord
-import me.sasta.spendings_processor_cmp.classes.UtilFuncs.validateYearMonthValuesInDailyRecords
 
 /**
  * Remove comments, Splits the raw string file to individual lines,
