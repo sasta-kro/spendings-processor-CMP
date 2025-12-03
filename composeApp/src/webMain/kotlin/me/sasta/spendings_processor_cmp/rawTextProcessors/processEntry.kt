@@ -12,9 +12,15 @@ fun processEntry(entry: String): Entry {
 
     val parts = entry.split("-") .toMutableList()
 
-    // Clean the 'cost' part if there is any extra info
+    // Process the 'cost' part to see if there is any extra chars or numbers
     val rawCostString = parts.last().trim()
-    val cleanedCostString = rawCostString.split(" ").first()
+    val rawCostStringSplit: List<String> = rawCostString.split(" ")
+    if (rawCostStringSplit.size > 1) {
+        throw IllegalArgumentException("Invalid format or extra info near the 'cost' number: \" $entry \"")
+    }
+    // choosing the first number after the `-` split if it has multiple
+    val cleanedCostString: String = rawCostStringSplit.first()
+
     parts[1] = cleanedCostString
 
     // Ensure that the entry has only two parts: name and cost
@@ -22,6 +28,8 @@ fun processEntry(entry: String): Entry {
 
     val name: String  = parts[0].trim()
     val costStr: String = parts[1].trim()
+
+
 
     // Safe conversion from string to double
     val cost = if (costStr.first() == '+') {

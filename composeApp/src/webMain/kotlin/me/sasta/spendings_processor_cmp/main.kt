@@ -11,8 +11,11 @@ fun main() {
 }
 
 
-// TODO: give which date when having an 'invalid date format' error
 // TODO: when giving invalid month error, point to which line the error is located in like the year error message
+// NOTE: turns out this error is by Kotlin in Local date. So, i have to check before the local date in the
+// Daily record file
+
+
 // TODO: program don't process last day when it is not padded with an empty line
 
 
